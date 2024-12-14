@@ -1,0 +1,7 @@
+Keep the project clean and simple without unnecessary layers of abstraction.  
+
+Anytime a change affects the external API follow these steps:
+1. updating the examples in the readme
+2. update the typescript types
+3. create/update the unit tests
+4. do the implementation
