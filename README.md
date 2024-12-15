@@ -1,6 +1,6 @@
 # ai-functions
 
-A convenience layer on top of the ai package that simplifies schema definition and function creation.
+A convenience layer on top of the [ai](https://sdk.vercel.ai) package that simplifies schema definition and function creation.
 
 ## Installation
 
