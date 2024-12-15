@@ -7,7 +7,7 @@ export async function streamObject<T extends SimpleSchema>(options: StreamObject
   validateSchema(options.schema)
   const zodSchema = convertToZodSchema(options.schema)
   const model = options.model ? convertToOpenAIModel(options.model) : convertToOpenAIModel('gpt-4-turbo')
-  
+
   const streamOptions = {
     ...options,
     model,
@@ -18,8 +18,8 @@ export async function streamObject<T extends SimpleSchema>(options: StreamObject
     // Add retry options for more reliable streaming
     retry: {
       attempts: 3,
-      delay: 1000
-    }
+      delay: 1000,
+    },
   }
 
   return aiStreamObject(streamOptions)

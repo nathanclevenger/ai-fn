@@ -22,27 +22,30 @@ const categorizeProduct = ai.categorizeProduct({
   productType: 'App | API | Marketplace | Platform | Packaged Service | Professional Service | Website',
   customer: 'ideal customer profile in 3-5 words',
   solution: 'describe the offer in 4-10 words',
-  description: 'website meta description'
+  description: 'website meta description',
 })
 
 // Use the function
 const result = await categorizeProduct({
   name: 'My Product',
-  description: 'A revolutionary product'
+  description: 'A revolutionary product',
 })
 
 // With streaming and custom options
-const streamingProduct = ai.categorizeProduct({
-  productType: 'App | API | Website',
-  description: 'product description'
-}, {
-  stream: true,
-  system: 'You are an expert at marketing',
-  model: 'gpt-4o-mini'
-})
+const streamingProduct = ai.categorizeProduct(
+  {
+    productType: 'App | API | Website',
+    description: 'product description',
+  },
+  {
+    stream: true,
+    system: 'You are an expert at marketing',
+    model: 'gpt-4o-mini',
+  },
+)
 
 for await (const chunk of streamingProduct({
-  name: 'Test Product'
+  name: 'Test Product',
 }).partialObjectStream) {
   console.log(chunk)
 }
@@ -67,7 +70,7 @@ console.log(items)
 // Create custom list function
 const quickList = createListFunction({
   model: 'gpt-4o-mini',
-  system: 'You are a local tour guide'
+  system: 'You are a local tour guide',
 })
 
 for await (const place of quickList`places to visit`) {
@@ -89,9 +92,9 @@ const { object } = await generateObject({
     customer: 'ideal customer profile in 3-5 words',
     solution: 'describe the offer in 4-10 words',
     description: 'website meta description',
-    keywords: ['seo-optimized keywords']
+    keywords: ['seo-optimized keywords'],
   },
-  prompt: 'Generate a product description.'
+  prompt: 'Generate a product description.',
 })
 ```
 
@@ -108,12 +111,12 @@ All functions accept these common options:
 
 ```typescript
 type Options = {
-  model?: string        // Model to use (default: gpt-4o)
-  system?: string       // System prompt
-  stream?: boolean      // Enable streaming responses
-  seed?: number         // Integer for deterministic outputs
-  temperature?: number  // Response creativity (0-1)
-  maxTokens?: number    // Maximum response length
+  model?: string // Model to use (default: gpt-4o)
+  system?: string // System prompt
+  stream?: boolean // Enable streaming responses
+  seed?: number // Integer for deterministic outputs
+  temperature?: number // Response creativity (0-1)
+  maxTokens?: number // Maximum response length
 }
 ```
 
@@ -125,9 +128,9 @@ The package includes built-in retries with exponential backoff for improved reli
 const result = await generateObject({
   // ... options
   retry: {
-    attempts: 3,    // Number of retry attempts
-    delay: 1000,    // Initial delay in ms
-    factor: 2       // Exponential backoff factor
-  }
+    attempts: 3, // Number of retry attempts
+    delay: 1000, // Initial delay in ms
+    factor: 2, // Exponential backoff factor
+  },
 })
 ```

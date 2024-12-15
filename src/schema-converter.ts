@@ -18,7 +18,7 @@ function convertValue(value: SimpleSchemaValue): z.ZodTypeAny {
   } else if (typeof value === 'string') {
     // Check if the string contains enum values (separated by |)
     if (value.includes('|')) {
-      const enumValues = value.split('|').map(v => v.trim())
+      const enumValues = value.split('|').map((v) => v.trim())
       return z.enum(enumValues as [string, ...string[]])
     }
     // Otherwise, create a string schema with the value as description

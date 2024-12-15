@@ -22,8 +22,8 @@ export const createListAwait = (options: ListOptions): ListAwaitFunction => {
       retry: {
         attempts: 3,
         delay: 1000,
-        factor: 2 // Exponential backoff
-      }
+        factor: 2, // Exponential backoff
+      },
     })
 
     return object.items || []

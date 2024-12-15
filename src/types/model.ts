@@ -1,8 +1,21 @@
-import { OpenAIModel } from '@ai-sdk/openai'
+import type { OpenAIProvider } from '@ai-sdk/openai'
+import type { LanguageModelV1CallOptions } from '@ai-sdk/provider'
 
-export type Model = string | OpenAIModel
+type ExtractModelType<T> = T extends (modelId: infer M, ...args: any[]) => any ? M : never
+export type OpenAIModelId = ExtractModelType<OpenAIProvider>
 
-export interface ExtendedOpenAIModel extends OpenAIModel {
+export type Model =
+  | string
+  | OpenAIModelId
+  | {
+      type: string
+      model: string
+      provider?: string
+      settings?: LanguageModelV1CallOptions
+    }
+
+export interface ExtendedOpenAIModel {
   type: 'openai'
-  model: string
+  model: OpenAIModelId | string
+  settings?: LanguageModelV1CallOptions
 }

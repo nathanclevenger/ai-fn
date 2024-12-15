@@ -7,13 +7,13 @@ export async function generateObject<T extends SimpleSchema>(options: GenerateOb
   validateSchema(options.schema)
   const zodSchema = convertToZodSchema(options.schema)
   const model = options.model ? convertToOpenAIModel(options.model) : convertToOpenAIModel('gpt-4-turbo')
-  
+
   return aiGenerateObject({
     ...options,
     model,
     schema: zodSchema,
     temperature: options.temperature ?? 0.7,
     maxTokens: options.maxTokens ?? 1000,
-    seed: typeof options.seed === 'number' ? options.seed : undefined
+    seed: typeof options.seed === 'number' ? options.seed : undefined,
   })
 }

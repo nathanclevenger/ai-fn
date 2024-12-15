@@ -8,8 +8,8 @@ describe('schema validation', () => {
       type: 'App | API | Website',
       tags: ['keywords'],
       nested: {
-        field: 'description'
-      }
+        field: 'description',
+      },
     }
 
     expect(() => validateSchema(schema)).not.toThrow()
@@ -23,7 +23,7 @@ describe('schema validation', () => {
 
   test('throws on invalid key', () => {
     const schema = {
-      '': 'empty key'
+      '': 'empty key',
     }
 
     expect(() => validateSchema(schema)).toThrow('Schema keys must be non-empty strings')
@@ -31,7 +31,7 @@ describe('schema validation', () => {
 
   test('throws on invalid value type', () => {
     const schema = {
-      count: 42
+      count: 42,
     }
 
     expect(() => validateSchema(schema as any)).toThrow('Schema values must be strings, arrays of strings, or nested objects')
@@ -39,7 +39,7 @@ describe('schema validation', () => {
 
   test('throws on empty array', () => {
     const schema = {
-      tags: []
+      tags: [],
     }
 
     expect(() => validateSchema(schema)).toThrow('Array schema values must not be empty')
@@ -47,7 +47,7 @@ describe('schema validation', () => {
 
   test('throws on array with non-string values', () => {
     const schema = {
-      tags: ['valid', 42]
+      tags: ['valid', 42],
     }
 
     expect(() => validateSchema(schema as any)).toThrow('Array schema values must contain only strings')

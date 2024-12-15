@@ -12,21 +12,37 @@
     "test:coverage": "vitest run --coverage",
     "test:all": "npm run test && npm run test:e2e",
     "build": "tsc",
-    "format": "prettier ."
+    "format": "prettier .",
+    "lint": "prettier --check . && tsc --noEmit",
+    "type-check": "tsc --noEmit",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "@ai-sdk/openai": "latest",
+    "@ai-sdk/openai": "^1.0.8",
+    "@ai-sdk/provider-utils": "^2.0.4",
+    "@ai-sdk/ui-utils": "^1.0.5",
+    "@opentelemetry/api": "^1.9.0",
     "ai": "latest",
     "dotenv": "^16.3.1",
+    "p-queue": "^8.0.1",
     "yaml": "^2.3.4",
-    "zod": "^3.22.4"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.16",
+    "@ai-sdk/provider": "^1.0.2",
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/github": "^9.2.6",
+    "@semantic-release/npm": "^11.0.2",
+    "@semantic-release/release-notes-generator": "^12.1.0",
+    "@types/node": "^20.17.10",
     "@vitest/coverage-v8": "latest",
     "@vitest/ui": "latest",
+    "husky": "^9.0.11",
     "prettier": "^3.4.2",
-    "typescript": "^5.3.3",
+    "semantic-release": "^23.0.2",
+    "typescript": "^5.7.2",
     "vite": "latest",
     "vitest": "latest"
   },

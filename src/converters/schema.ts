@@ -6,7 +6,7 @@ function convertValue(value: SimpleSchemaValue): z.ZodTypeAny {
     return z.array(z.string().describe(value[0] || ''))
   } else if (typeof value === 'string') {
     if (value.includes('|')) {
-      const enumValues = value.split('|').map(v => v.trim())
+      const enumValues = value.split('|').map((v) => v.trim())
       return z.enum(enumValues as [string, ...string[]])
     }
     return z.string().describe(value)
