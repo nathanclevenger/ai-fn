@@ -3,13 +3,13 @@ import { generateObject, streamObject } from '@/index'
 import { SimpleSchema, AIFunctionOptions } from '@/types'
 
 function generatePrompt(functionName: string, args: any): string {
-  const yamlArgs = stringify(args, { flowLevel: 1 })
+  const yamlArgs = stringify(args, { flowStyle: 'flow' })
   return `${functionName}:\n${yamlArgs}`
 }
 
 export function createAIFunction<T extends SimpleSchema>(
-  functionName: string, 
-  schema: T, 
+  functionName: string,
+  schema: T,
   options: AIFunctionOptions = {}
 ) {
   return async function(input: any) {

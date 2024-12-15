@@ -1,10 +1,6 @@
-import type { OpenAIProvider } from '@ai-sdk/openai'
+import { z } from 'zod'
 
-// Extract model type from OpenAI provider
-type ExtractModelType<T> = T extends (modelId: infer M, ...args: any[]) => any ? M : never
-export type OpenAIModelId = ExtractModelType<OpenAIProvider>
-
-export type QueueOptions = {
+export interface QueueOptions {
   concurrency?: number
   timeout?: number
   retries?: number
@@ -12,21 +8,10 @@ export type QueueOptions = {
   autoStart?: boolean
 }
 
-export type Model = OpenAIModelId | {
-  type: string
-  model: string
-  [key: string]: unknown
-}
-
-export type ExtendedAIFunctionOptions = {
-  model?: Model
-  system?: string
-  temperature?: number
-  maxTokens?: number
-  queue?: QueueOptions
-  providerOptions?: Record<string, unknown>
-  experimental?: {
-    metadata?: Record<string, unknown>
-    features?: string[]
-  }
-}
+export const queueOptionsSchema = z.object({
+  concurrency: z.number().optional(),
+  timeout: z.number().optional(),
+  retries: z.number().optional(),
+  priority: z.number().optional(),
+  autoStart: z.boolean().optional()
+})
