@@ -31,9 +31,7 @@ describe('QueueManager', () => {
     const delays = [100, 100, 100]
     const start = Date.now()
 
-    const promises = delays.map(delay =>
-      queueManager.add(() => new Promise(resolve => setTimeout(resolve, delay)))
-    )
+    const promises = delays.map((delay) => queueManager.add(() => new Promise((resolve) => setTimeout(resolve, delay))))
 
     await Promise.all(promises)
     const duration = Date.now() - start
@@ -48,10 +46,10 @@ describe('QueueManager', () => {
     // Add low priority task first
     queueManager.add(
       async () => {
-        await new Promise(resolve => setTimeout(resolve, 50))
+        await new Promise((resolve) => setTimeout(resolve, 50))
         results.push(2)
       },
-      { priority: 1 }
+      { priority: 1 },
     )
 
     // Add high priority task second
@@ -59,7 +57,7 @@ describe('QueueManager', () => {
       async () => {
         results.push(1)
       },
-      { priority: 2 }
+      { priority: 2 },
     )
 
     await queueManager.onIdle()

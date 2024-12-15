@@ -9,8 +9,8 @@ export const FALLBACK_MODEL = MODEL_FAST
 // Model constants for external use
 export const MODELS = {
   BEST: MODEL_BEST,
-  FAST: MODEL_FAST
+  FAST: MODEL_FAST,
 } as const
 
 // Model type definitions
-export type ModelType = typeof MODELS[keyof typeof MODELS]
+export type ModelType = (typeof MODELS)[keyof typeof MODELS]

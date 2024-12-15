@@ -18,7 +18,7 @@ function validateSchemaValue(value: unknown): void {
     if (value.length === 0) {
       throw new Error('Array schema values must not be empty')
     }
-    value.forEach(item => {
+    value.forEach((item) => {
       if (typeof item !== 'string') {
         throw new Error('Array schema values must contain only strings')
       }

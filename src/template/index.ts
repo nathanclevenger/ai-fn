@@ -9,10 +9,13 @@ export function ai(strings: TemplateStringsArray, ...values: any[]) {
   const prompt = createTemplatePrompt(strings, values)
 
   function withOptions(options: AIFunctionOptions = {}) {
-    return queueManager.add(async () => {
-      const response = await createTemplatePrompt(strings, values, options)
-      return response
-    }, { model: options.model })
+    return queueManager.add(
+      async () => {
+        const response = await createTemplatePrompt(strings, values, options)
+        return response
+      },
+      { model: options.model },
+    )
   }
 
   // Make the function callable directly or with options
@@ -27,13 +30,13 @@ export function ai(strings: TemplateStringsArray, ...values: any[]) {
         const result = await stream.next()
         return {
           done: result.done || false,
-          value: result.value || ''
+          value: result.value || '',
         }
-      }
+      },
     }
   }
 
   return Object.assign(templateFunction, {
-    [Symbol.asyncIterator]: templateFunction[Symbol.asyncIterator]
+    [Symbol.asyncIterator]: templateFunction[Symbol.asyncIterator],
   })
 }

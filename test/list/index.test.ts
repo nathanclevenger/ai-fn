@@ -5,7 +5,7 @@ import { MODELS } from '@/constants/models'
 
 vi.mock('ai', () => ({
   streamObject: vi.fn(),
-  generateObject: vi.fn()
+  generateObject: vi.fn(),
 }))
 
 describe('list function', () => {
@@ -14,11 +14,11 @@ describe('list function', () => {
       async *[Symbol.asyncIterator]() {
         yield { item: 'Visit South Beach' }
         yield { item: 'Try Cuban food' }
-      }
+      },
     }
 
     vi.mocked(streamObject).mockResolvedValueOnce({
-      elementStream: mockElementStream
+      elementStream: mockElementStream,
     })
 
     const items = []
@@ -28,9 +28,11 @@ describe('list function', () => {
     }
 
     expect(items).toEqual(['Visit South Beach', 'Try Cuban food'])
-    expect(streamObject).toHaveBeenCalledWith(expect.objectContaining({
-      prompt: 'fun things to do in Miami',
-      output: 'array'
-    }))
+    expect(streamObject).toHaveBeenCalledWith(
+      expect.objectContaining({
+        prompt: 'fun things to do in Miami',
+        output: 'array',
+      }),
+    )
   })
 })

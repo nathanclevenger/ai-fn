@@ -11,7 +11,7 @@ describe('proxy prompt generator', () => {
   test('handles nested objects', () => {
     const prompt = generatePrompt('recipe', {
       name: 'Pasta',
-      ingredients: ['tomatoes', 'pasta']
+      ingredients: ['tomatoes', 'pasta'],
     })
     expect(prompt).toContain('recipe:')
     expect(prompt).toContain('name: Pasta')

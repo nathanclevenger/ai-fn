@@ -16,10 +16,7 @@ type StreamResult = AsyncIterable<Partial<ChunkSchema>> & {
 /**
  * Creates a streaming template function that returns chunks via AsyncIterator
  */
-export const createTemplateStream = (
-  prompt: string,
-  options: AIFunctionOptions = {}
-): StreamResult => {
+export const createTemplateStream = (prompt: string, options: AIFunctionOptions = {}): StreamResult => {
   const model = convertToOpenAIModel(options.model || DEFAULT_TEMPLATE_OPTIONS.model)
   const chunkSchema = z.object({ chunk: z.string() })
 
@@ -30,7 +27,7 @@ export const createTemplateStream = (
     system: options.system,
     temperature: options.temperature ?? DEFAULT_TEMPLATE_OPTIONS.temperature,
     maxTokens: options.maxTokens ?? DEFAULT_TEMPLATE_OPTIONS.maxTokens,
-    maxRetries: options.queue?.retries ?? 3
+    maxRetries: options.queue?.retries ?? 3,
   })
 
   const result: StreamResult = {
@@ -39,8 +36,8 @@ export const createTemplateStream = (
         yield part
       }
     },
-    text: stream.object.then(obj => obj.chunk),
-    fullStream: stream.fullStream
+    text: stream.object.then((obj) => obj.chunk),
+    fullStream: stream.fullStream,
   }
 
   return result

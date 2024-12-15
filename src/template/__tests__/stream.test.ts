@@ -19,8 +19,8 @@ describe('createTemplateStream', () => {
       temperature: 0.5,
       maxTokens: 1000,
       queue: {
-        retries: 5
-      }
+        retries: 5,
+      },
     }
     const stream = createTemplateStream(prompt, options)
 
@@ -36,16 +36,16 @@ describe('createTemplateStream', () => {
 
     vi.mock('ai', () => ({
       streamObject: vi.fn().mockImplementation(() => ({
-        [Symbol.asyncIterator]: async function*() {
+        [Symbol.asyncIterator]: async function* () {
           yield mockChunk
         },
         text: Promise.resolve('Hello, world!'),
         fullStream: {
-          [Symbol.asyncIterator]: async function*() {
+          [Symbol.asyncIterator]: async function* () {
             yield { type: 'text-delta', textDelta: 'Hello, world!' }
-          }
-        }
-      }))
+          },
+        },
+      })),
     }))
 
     const stream = createTemplateStream(prompt)

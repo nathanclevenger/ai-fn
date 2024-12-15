@@ -11,10 +11,7 @@ describe('generateTemplatePrompt', () => {
   it('should handle multiple interpolations', () => {
     const topic = 'AI'
     const length = 'short'
-    const result = generateTemplatePrompt(
-      ['write a ', ' blog post about ', ' with proper formatting'],
-      [length, topic]
-    )
+    const result = generateTemplatePrompt(['write a ', ' blog post about ', ' with proper formatting'], [length, topic])
     expect(result).toBe('write a short blog post about AI with proper formatting')
   })
 

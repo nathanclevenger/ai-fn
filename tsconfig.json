@@ -5,7 +5,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "lib": ["es2020"],
-    
+
     // Strict type checking
     "strict": true,
     "noImplicitAny": true,
@@ -16,7 +16,7 @@
     "noImplicitThis": true,
     "useUnknownInCatchVariables": true,
     "alwaysStrict": true,
-    
+
     // Module resolution
     "baseUrl": ".",
     "paths": {
@@ -25,21 +25,21 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    
+
     // Build output
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "dist",
     "removeComments": false,
-    
+
     // Additional checks
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    
+
     // Skip type checking of node_modules
     "skipLibCheck": true
   },

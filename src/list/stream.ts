@@ -23,8 +23,8 @@ export const createListStream = (options: ListOptions): ListStreamFunction => {
       retry: {
         attempts: 3,
         delay: 1000,
-        factor: 2 // Exponential backoff
-      }
+        factor: 2, // Exponential backoff
+      },
     })
 
     for await (const element of elementStream) {

@@ -13,5 +13,5 @@ export const queueOptionsSchema = z.object({
   timeout: z.number().optional(),
   retries: z.number().optional(),
   priority: z.number().optional(),
-  autoStart: z.boolean().optional()
+  autoStart: z.boolean().optional(),
 })

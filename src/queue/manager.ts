@@ -11,7 +11,7 @@ export class QueueManager {
     this.defaultQueue = new PQueue({
       concurrency: options.concurrency ?? 3,
       timeout: options.timeout ?? 30000,
-      autoStart: options.autoStart ?? true
+      autoStart: options.autoStart ?? true,
     })
   }
 
@@ -19,11 +19,14 @@ export class QueueManager {
     if (!model) return this.defaultQueue
 
     if (!this.queues.has(model)) {
-      this.queues.set(model, new PQueue({
-        concurrency: this.options.concurrency ?? 3,
-        timeout: this.options.timeout ?? 30000,
-        autoStart: this.options.autoStart ?? true
-      }))
+      this.queues.set(
+        model,
+        new PQueue({
+          concurrency: this.options.concurrency ?? 3,
+          timeout: this.options.timeout ?? 30000,
+          autoStart: this.options.autoStart ?? true,
+        }),
+      )
     }
 
     return this.queues.get(model)!
